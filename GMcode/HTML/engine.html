@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMcode - Engine</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #00FF00;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            position: sticky;
+            left: 50%
+            transform: translateX(-50%);
+            height: 2500px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            background-color: #000000;
+            border: 2px solid #00FF00;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Yeşil gölgelendirme */
+        }
+        textarea, button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #000000;
+            color: #00FF00;
+            border: 2px solid #00FF00;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00FF00;
+            color: #000000;
+        }
+        .templateButton {
+          position: relative;
+          margin-right: 14.15px;
+          top: 50px;
+          width: 100px;
+          height: 80px;
+        }
+        #code {
+          height: 200px;
+        }
+        #logo {
+          position: fixed;
+          width: 50px;
+          height: 50px;
+          z-index: 9999999999999999999999999999999;
+        }
+  #logoTXT {
+          position: fixed;
+          height: 50px;
+          transform: translate(60px, -2px);
+          z-index: 9999999999999999999999999999999;
+        }
+  
+  #load {
+    transform: translateY(65.35px);
+  }
+  
+  #test {
+    position: absolute;
+    width: 20%;
+    left: 50%;
+    transform: translateX(-57.5%);
+  }
+  
+  
+  
+  
+        
+  
+    </style>
+</head>
+<body>
+  
+  <a href="index.html">
+  <img id="logo" src="../images/GMcode_logo.png" alt="logo" style="top: 0px; left: 0px;">
+  </a>
+  <h3 id="logoTXT">
+    &lt;Click The Logo To Go Back To The Main Menu!
+  </h3>
+  
+  <img src="../images/GMstick.gif" alt="GMstick" style="position: absolute; width: 100px; height: 100px; left: 80%; top: 20px">
+  
+    <div class="container" style="transform: translateY(125px);">
+
+        <h2>Write File Name</h2>
+        <textarea id="fileName" placeholder="Write File Name Here!"></textarea>
+      
+        <h2>Write Your Code Here</h2>
+        <textarea id="code" placeholder="Write Your Code Here!" style="font-size: 12px; letter-spacing: -1.35px;"></textarea>
+        <button id="save-button-rfcf" onclick="saveFile()" style="z-index: 99999;">Save RFCF</button>
+        <button id="save-button-html" onclick="saveFile()" style="z-index: 99999;">Save HTML</button>
+        <button id="save-button-css" onclick="saveFile()" style="z-index: 99999;">Save CSS</button>
+        <button id="save-button-js" onclick="saveFile()" style="z-index: 99999;">Save JavaScript</button>
+        <h5 style="position: relative; left: 85%; transform: translate(-50%, -202px); width: 130px">RFCF Parser Needed!</h5>
+      
+          <div id="templates" style="transform: translate(7px,-3px);">
+            
+            <div id="startTemplates" style="transform: translateY(-60px)">
+              <h1 style="transform: translateY(50px);">Starter Templates</h1>
+              
+            <button id="classic-html" class="templateButton">
+              Classic HTML
+            </button>
+            </div>
+            
+            <div id="normalTemplatesHTML" style="transform: translateY(-60px)">
+              <h1 style="transform: translateY(50px)">Normal HTML Templates</h1>
+              
+            <button id="button-html" class="templateButton">
+              &lt;button&gt;
+            </button>
+            
+            <button id="div-html" class="templateButton">
+              &lt;div&gt;
+            </button>
+              
+            <button id="h1-html" class="templateButton">
+              &lt;h1&gt;
+            </button>
+              
+              <button id="h2-html" class="templateButton">
+              &lt;h2&gt;
+            </button>
+              
+              <button id="h3-html" class="templateButton">
+              &lt;h3&gt;
+            </button>
+              
+              <button id="h4-html" class="templateButton">
+              &lt;h4&gt;
+            </button>
+              
+              <button id="h5-html" class="templateButton">
+              &lt;h5&gt;
+            </button>
+              
+              <button id="h6-html" class="templateButton">
+              &lt;h6&gt;
+            </button>
+              
+              <button id="html-html" class="templateButton">
+              &lt;html&gt;
+            </button>
+              
+              <button id="style-html" class="templateButton">
+              &lt;style&gt;
+            </button>
+              
+            </div>
+            
+        </div>
+  <script>
+      
+      document.addEventListener("DOMContentLoaded", function() {
+  let addButton = document.getElementById("classic-html");
+  addButton.addEventListener("click", function() {
+    let textarea = document.getElementById("code");
+    let template = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta http-equiv=\"CONTENT-TYPE\" content=\"text/html; charset=UTF-8\">\n  <title></title>\n</head>\n<body>\n</body>\n</html>\n"
+    textarea.value = template;
+  });
+});
+  
+document.getElementById("button-html").addEventListener("click", function() {
+  let template = "<button>\n\n</button>"
+  
+  navigator.clipboard.writeText(template)
+  .then(function() {
+    alert("Copied To Clipboard!");
+    
+  })
+  
+  .catch(function(error) {
+    alert("Copied With Error!");
+  });
+});
+  
+  document.getElementById("div-html").addEventListener("click", function() {
+  let template = "<div id=\"\" class=\"\">\n\n</div>"
+  
+  navigator.clipboard.writeText(template)
+  .then(function() {
+    alert("Copied To Clipboard!");
+    
+  })
+  
+  .catch(function(error) {
+    alert("Copied With Error!");
+  });
+});
+      
+      document.getElementById("h1-html").addEventListener("click", function() {
+  let template = "<h1>\n\n</h1>"
+  
+  navigator.clipboard.writeText(template)
+  .then(function() {
+    alert("Copied To Clipboard!");
+    
+  })
+  
+  .catch(function(error) {
+    alert("Copied With Error!");
+  });
+});
+      
+      document.getElementById("h2-html").addEventListener("click", function() {
+  let template = "<h2>\n\n</h2>"
+  
+  navigator.clipboard.writeText(template)
+  .then(function() {
+    alert("Copied To Clipboard!");
+    
+  })
+  
+  .catch(function(error) {
+    alert("Copied With Error!");
+  });
+});
+      
+      document.getElementById("h3-html").addEventListener("click", function() {
+  let template = "<h3>\n\n</h3>"
+  
+  navigator.clipboard.writeText(template)
+  .then(function() {
+    alert("Copied To Clipboard!");
+    
+  })
+  
+  .catch(function(error) {
+    alert("Copied With Error!");
+  });
+});
+      
+      document.getElementById("h4-html").addEventListener("click", function() {
+  let template = "<h4>\n\n</h4>"
+  
+  navigator.clipboard.writeText(template)
+  .then(function() {
+    alert("Copied To Clipboard!");
+    
+  })
+  
+  .catch(function(error) {
+    alert("Copied With Error!");
+  });
+});
+      
+      document.getElementById("h5-html").addEventListener("click", function() {
+  let template = "<h5>\n\n</h5>"
+  
+  navigator.clipboard.writeText(template)
+  .then(function() {
+    alert("Copied To Clipboard!");
+    
+  })
+  
+  .catch(function(error) {
+    alert("Copied With Error!");
+  });
+});
+      
+      document.getElementById("h6-html").addEventListener("click", function() {
+  let template = "<h6>\n\n</h6>"
+  
+  navigator.clipboard.writeText(template)
+  .then(function() {
+    alert("Copied To Clipboard!");
+    
+  })
+  
+  .catch(function(error) {
+    alert("Copied With Error!");
+  });
+});
+      
+      document.getElementById("html-html").addEventListener("click", function() {
+  let template = "<html>\n\n</html>"
+  
+  navigator.clipboard.writeText(template)
+  .then(function() {
+    alert("Copied To Clipboard!");
+    
+  })
+  
+  .catch(function(error) {
+    alert("Copied With Error!");
+  });
+});
+      
+      
+      
+      document.getElementById("style-html").addEventListener("click", function() {
+  let template = "<style>\n\n</style>"
+  
+  navigator.clipboard.writeText(template)
+  .then(function() {
+    alert("Copied To Clipboard!");
+    
+  })
+  
+  .catch(function(error) {
+    alert("Copied With Error!");
+  });
+});
+      
+      document.getElementById("save-button-html").addEventListener("click", function() {
+  let fileContent = document.getElementById("code").value;
+  
+  let fileName = document.getElementById("fileName").value + ".html";
+  
+  let file = new Blob([fileContent], { type: "text/html" });
+  
+  let downloadLink = document.createElement("a");
+  downloadLink.href = URL.createObjectURL(file);
+  downloadLink.download = fileName;
+  downloadLink.click();
+});
+      
+      document.getElementById("save-button-css").addEventListener("click", function() {
+  let fileContent = document.getElementById("code").value;
+  
+  let fileName = document.getElementById("fileName").value + ".css";
+  
+  let file = new Blob([fileContent], { type: "text/css" });
+  
+  let downloadLink = document.createElement("a");
+  downloadLink.href = URL.createObjectURL(file);
+  downloadLink.download = fileName;
+  downloadLink.click();
+});
+      
+      document.getElementById("save-button-js").addEventListener("click", function() {
+  // Dosya içeriğini al
+  let fileContent = document.getElementById("code").value;
+  
+  let fileName = document.getElementById("fileName").value + ".js";
+  
+  let file = new Blob([fileContent], { type: "text/js" });
+  
+  let downloadLink = document.createElement("a");
+  downloadLink.href = URL.createObjectURL(file);
+  downloadLink.download = fileName;
+  downloadLink.click();
+});
+      
+      setTimeout(function() {
+  var parcalar = document.querySelectorAll("#logoTXT");
+        
+  parcalar.forEach(function(parca) {
+    parca.style.display = "none";
+  });
+}, 3000);
+      
+      document.getElementById("save-button-rfcf").addEventListener("click", function() {
+        
+  let fileContent = document.getElementById("code").value
+  
+  let fileName = document.getElementById("fileName").value + ".rfcf";
+  
+  let file = new Blob([fileContent], { type: "text/rfcf" });
+  
+  let downloadLink = document.createElement("a");
+  downloadLink.href = URL.createObjectURL(file);
+  downloadLink.download = fileName;
+  downloadLink.click();
+      });
+      
+      
+      
+      
+      
+      
+  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+  
+  </script>
+</body>
+  </html>
