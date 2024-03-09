@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>GMcode - RFCF Parser</title>
+</head>
+<body style="background-color: #000000;">
+  <input id="rfcf-file" type="file" accept=".rfcf" style="position: fixed; left: 50%; transform: translateX(-13.5%);">
+  <img id="rfcf-logo" src="../images/rfcf_logo.png" alt="RFCF logo" style="position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px;">
+  
+  <script>
+    document.getElementById("rfcf-file").addEventListener('change', function(event) {
+      // Dosya seçildiğinde inputu gizle
+      document.getElementById("rfcf-file").style.display = "none";
+      document.getElementById("rfcf-logo").style.display = "none";
+      
+      var file = event.target.files[0];
+      var fileReader = new FileReader();
+      
+      fileReader.onload = function(e) {
+        var willSplitFileContent = e.target.result;
+        var fileContent = willSplitFileContent.split("\n");
+        
+        // RFCF dosyasını işlemek için objProcessor.js, bgProcessor.js ve inputProcessor.js dosyalarını kullan
+        var objScript = document.createElement('script');
+        objScript.src = '../JS/objProcessor.js';
+        objScript.onload = function() {
+          processRFCF(fileContent);
+        };
+        document.head.appendChild(objScript);
+        
+        var bgScript = document.createElement('script');
+        bgScript.src = '../JS/BgProcessor.js';
+        bgScript.onload = function() {
+          processBgTag(fileContent);
+        };
+        document.head.appendChild(bgScript);
+        
+        var inputScript = document.createElement('script');
+        inputScript.src = '../JS/inputProcessor.js';
+        inputScript.onload = function() {
+          processInputTag(fileContent);
+        };
+        document.head.appendChild(inputScript);
+      };
+      
+      fileReader.readAsText(file);
+    });
+  </script>
+</body>
+</html>
