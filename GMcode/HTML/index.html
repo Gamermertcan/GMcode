@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMcode - Main Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            margin-bottom: 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #00FF00;
+            font-size: 18px;
+            padding: 15px 30px;
+            border: 2px solid #00FF00;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        nav ul li a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        #logo {
+          position: fixed;
+          width: 50px;
+          height: 50px;
+          top: 0%;
+          left: 0%;
+          z-index: 9999999999999999999999999999999;
+        }
+  
+    </style>
+</head>
+<body>
+  
+  <a href="index.html">
+  <img id="logo" src="../images/GMcode_logo.png" alt="logo">
+  </a>
+  
+    <header>
+        <h1 style="color: #00FF00;">GMcode</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="engine.html">Start Coding</a></li>
+            <li id="quit"><a href="">Quit</a></li>
+            <li> <a href="RFCF_Parser.html">RFCF Parser</a></li>
+        </ul>
+    </nav>
+  
+  
+  <script>
+  
+  document.getElementById("quit").addEventListener("click", function() {
+    
+    window.close();
+});
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </script>
+</body>
+</html>
